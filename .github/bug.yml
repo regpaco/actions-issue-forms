@@ -1,0 +1,20 @@
+name: Bug Report
+description: File a bug report
+inputs:
+- description:
+    preview_only: true
+    value: >
+      Thanks for taking the time to fill out a bug! Before you start,
+      please search the
+      [issue tracker](https://github.com/monalisa/project/issues)
+      to see if the problem has already been reported.
+- input:
+    label: "**Version**"
+    required: true
+- textarea:
+    label: "**Describe the problem**"
+    description: "What happened?"
+    required: true
+- textarea:
+    label: "**What did you expect to happen?**"
+issue_body: false
