@@ -30,7 +30,5 @@ body:
     placeholder: |
       @octodemo/[TEAM]
       @octodemo/[TEAM] 
-     
-    render: bash
   validations:
     required: true
