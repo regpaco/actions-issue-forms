@@ -1,5 +1,5 @@
-name: Add Member
-description: Issue Forms template to invite a member to an Org
+name: Add Members
+description: Issue Forms template to invite members to an Org
 title: "Add User to the repo "
 labels: ["issueops", "triage"]
 assignees:
@@ -11,21 +11,26 @@ body:
 - type: markdown
   attributes:
     value: |
-      Before adding a member to the organization, please refer the
+      Before adding members to the organization, please refer the
       [Adding members Guidelines](https://github.com/monalisa/project/issues)
       to see if your request will meet the requirements.
-- type: input
-  id: User
+- type: textarea
+  id: members
   attributes:
-    label: User
-    description: "GitHub handle for the person to be added"
-    placeholder: "Example: @decyjphr"
+    label: Members
+    description: |
+      GitHub handle for persons to be added
+      One person per line
+    placeholder: |
+      Example: 
+      @user1
+      @user2
   validations:
     required: true
 - type: textarea
   id: teams
   attributes:
-    label: Teams to add the person 
+    label: Teams to add the members 
     description: "Add the teams. One team per line."
     placeholder: |
       @octodemo/[TEAM]
