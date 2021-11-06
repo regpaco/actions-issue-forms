@@ -27,7 +27,7 @@ body:
   attributes:
     label: Teams to add the person 
     description: "Add the teams. One team per line."
-    value: |
+    placeholder: |
       @octodemo/[TEAM]
       @octodemo/[TEAM] 
      
