@@ -14,7 +14,6 @@ jobs:
     - name: Create GitHub repo
       uses: actions/github-script@v5
       with:
-        github-token: ${{ secrets.CUSTOM_TOKEN }}
         script: |
             console.log(context.payload.issue.body)
     - id: parse
