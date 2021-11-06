@@ -12,14 +12,18 @@ jobs:
     runs-on: ubuntu-20.04
     
     steps:
-    - name: Run Issue form parser
-      id: parse
+    - name: Create GitHub repo
+      uses: actions/github-script@v5
+      with:
+        github-token: ${{ secrets.CUSTOM_TOKEN }}
+        script: |
+            console.log(context.payload.issue.body)
+    - id: parse
+      name: Run Issue form parser
       uses: peter-murray/issue-forms-body-parser@v2.0.0
       with:
         issue_id: ${{ github.event.issue.number }}
         separator: '###'
-        label_marker_start: '>>'
-        label_marker_end: '<<'
 
     - name: Show parsed data JSON
       run: |
