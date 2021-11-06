@@ -15,7 +15,7 @@ body:
       [Adding members Guidelines](https://github.com/monalisa/project/issues)
       to see if your request will meet the requirements.
 - type: textarea
-  id: :members:
+  id: >>members<<
   attributes:
     label: Members
     description: |
@@ -27,7 +27,7 @@ body:
   validations:
     required: true
 - type: textarea
-  id: :teams:
+  id: >>teams<<
   attributes:
     label: Teams to add the members 
     description: "Add the teams. One team per line."
