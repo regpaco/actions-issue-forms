@@ -1,7 +1,7 @@
 name: Add Members
 description: Issue Forms template to invite members to an Org
 title: "Add User to the repo "
-labels: ["issueops", "triage"]
+labels: ["issueops"]
 assignees:
   - decyjphr
 body:
