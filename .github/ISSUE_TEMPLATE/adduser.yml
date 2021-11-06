@@ -5,9 +5,9 @@ labels: ["issueops", "triage"]
 assignees:
   - decyjphr
 body:
-  - type: markdown
+- type: markdown
     value: "## Welcome!"
-  - type: markdown
+- type: markdown
   attributes:
     value: |
       Before adding a member to the organization, please refer the
