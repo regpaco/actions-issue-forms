@@ -26,8 +26,12 @@ jobs:
 
     - name: Create GitHub repo
       uses: actions/github-script@v5
+      env:
+          payload: '${{ steps.parse.outputs.payload }}'
       with:
         script: |
-            console.log(context.payload.issue.body)
-            let s = Object.assign({}, steps.parse.outputs.payload)
+            const {payload} = process.env
+            //console.log(context.payload.issue.body)
+            console.log(payload)
+            let s = JSON.parse(payload)
             console.log(`${JSON.stringify(s)}`)
