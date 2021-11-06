@@ -1,0 +1,46 @@
+name: Bug Report
+description: File a bug report
+name: Add Member
+description: Issue Forms template to invite a member to an Org
+title: "Add User to the repo "
+labels: ["issueops", "triage"]
+assignees:
+  - decyjphr
+body:
+- type: markdown
+  value: "## Welcome!"
+- type: markdown
+name: Add User
+description: Add a User
+title: "[Add User]: "
+labels: [add-user]
+assignees:
+- decyjphr
+
+body:
+  - type: markdown
+  attributes:
+    value: |
+      Before adding a member to the organization, please refer the
+      [Adding members Guidelines](https://github.com/monalisa/project/issues)
+      to see if your request will meet the requirements.
+- type: input
+  id: User
+  attributes:
+    label: User
+    description: "GitHub handle for the person to be added"
+    placeholder: "Example: @decyjphr"
+  validations:
+    required: true
+- type: textarea
+  id: teams
+  attributes:
+    label: Teams to add the person 
+    description: "Add the teams. One team per line."
+    value: |
+      @octodemo/[TEAM]
+      @octodemo/[TEAM] 
+     
+    render: bash
+  validations:
+    required: true
