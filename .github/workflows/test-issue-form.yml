@@ -2,7 +2,7 @@ name: Test Action
 
 on:
   issues:
-    types: [opened, reopened]
+    types: [opened, reopened, labelled]
 
 jobs:
   test:
