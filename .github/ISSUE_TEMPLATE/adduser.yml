@@ -19,8 +19,7 @@ body:
   attributes:
     label: Members
     description: |
-      GitHub handle for persons to be added
-      One person per line
+      Add the GitHub handle for persons; one person per line.
     placeholder: |
       Example: 
       @user1
