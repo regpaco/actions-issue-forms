@@ -1,5 +1,3 @@
-name: Bug Report
-description: File a bug report
 name: Add Member
 description: Issue Forms template to invite a member to an Org
 title: "Add User to the repo "
@@ -7,17 +5,8 @@ labels: ["issueops", "triage"]
 assignees:
   - decyjphr
 body:
-- type: markdown
-  value: "## Welcome!"
-- type: markdown
-name: Add User
-description: Add a User
-title: "[Add User]: "
-labels: [add-user]
-assignees:
-- decyjphr
-
-body:
+  - type: markdown
+    value: "## Welcome!"
   - type: markdown
   attributes:
     value: |
