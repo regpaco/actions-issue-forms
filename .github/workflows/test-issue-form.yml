@@ -29,5 +29,5 @@ jobs:
       with:
         script: |
             console.log(context.payload.issue.body)
-            let s = Object.assign({}, steps.parse.outputs.payload}
+            let s = Object.assign({}, steps.parse.outputs.payload)
             console.log(`${JSON.stringify(s)}`)
