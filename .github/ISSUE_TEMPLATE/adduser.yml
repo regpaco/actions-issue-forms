@@ -6,6 +6,7 @@ assignees:
   - decyjphr
 body:
 - type: markdown
+  attributes:
     value: "## Welcome!"
 - type: markdown
   attributes:
