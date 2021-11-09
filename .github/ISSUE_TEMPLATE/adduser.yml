@@ -17,7 +17,7 @@ body:
 - type: textarea
   id: members
   attributes:
-    label: ">>Members<<"
+    label: ">>members<<"
     description: |
       Add the GitHub handle for persons; one person per line.
     placeholder: |
@@ -29,7 +29,7 @@ body:
 - type: textarea
   id: teams
   attributes:
-    label: ">>Teams<<"
+    label: ">>teams<<"
     description: "Add the teams. One team per line."
     placeholder: |
       @octodemo/[TEAM]
