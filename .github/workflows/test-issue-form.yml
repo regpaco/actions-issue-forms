@@ -34,4 +34,6 @@ jobs:
             //console.log(context.payload.issue.body)
             console.log(payload)
             let s = JSON.parse(payload)
+            s.members = s.members.split("\r\n")
+            s.teams = s.teams.split("\r\n")
             console.log(`${JSON.stringify(s)}`)
