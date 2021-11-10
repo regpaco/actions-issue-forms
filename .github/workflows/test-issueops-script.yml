@@ -46,7 +46,7 @@ jobs:
                 core.debug(`${org}`)
                 const params = {
                   org,
-                  team_slug
+                  team_slug: teamSlug
                 }
                 let res = {
                     data: {
@@ -73,7 +73,7 @@ jobs:
                 for (const username of s.members) {
                     const params = {
                         org,
-                        team_slug,
+                        team_slug: teamSlug,
                         username
                     }
                     core.debug(`Adding team members ${JSON.stringify(params)}`)
