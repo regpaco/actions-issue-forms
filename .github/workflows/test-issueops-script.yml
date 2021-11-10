@@ -42,7 +42,7 @@ jobs:
             core.debug(`${JSON.stringify(s)}`)
             for (const teamSlug of s.teams) {
                 core.debug('Finding team')
-                core.debug(`${team_slug}`)
+                core.debug(`${teamSlug}`)
                 core.debug(`${org}`)
                 const params = {
                   org,
