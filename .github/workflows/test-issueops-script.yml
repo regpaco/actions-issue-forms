@@ -94,8 +94,8 @@ jobs:
             core.setOutput(
                 'status',
                 `Successfully created members ${JSON.stringify(
-                    teamInputs.members
-                    )} for teams ${JSON.stringify(teamInputs.teams)}`
+                    s.members
+                    )} for teams ${JSON.stringify(s.teams)}`
             )
             
             
