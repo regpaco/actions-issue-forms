@@ -24,9 +24,26 @@ jobs:
       run: |
         echo "${{ steps.parse.outputs.payload }}"
 
-    - name: Process the forms
+    - name: Process the form
       uses: decyjphr-actions/themis@HEAD
       with:
         issue_body_json: '${{ steps.parse.outputs.payload }}'
         pat_token: ${{secrets.pat_token}}
+        
+    - name: Process Failure
+      if: ${{ failure() }}
+      uses: actions/github-script@v5
+      with:
+        github-token: ${{ secrets.CUSTOM_TOKEN }}
+        script: |
+          try { 
+            await github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: ':x: Sorry, your request could not be processed'
+            }) 
+          } catch(err) {
+            throw err
+          }
 
