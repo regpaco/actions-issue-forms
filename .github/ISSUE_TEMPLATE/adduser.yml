@@ -1,6 +1,6 @@
 name: Add Members
 description: Issue Forms template to invite members to an Org
-title: "Add User to the repo "
+title: "Add Members to Teams"
 labels: ["issueops"]
 assignees:
   - decyjphr
@@ -19,20 +19,18 @@ body:
   attributes:
     label: ">>members<<"
     description: |
-      Add the GitHub handle for persons; one person per line.
+      Add the GitHub handle for persons; comma delimited list of persons.
     placeholder: |
       Example: 
-      @user1
-      @user2
+      user1, user2
   validations:
     required: true
 - type: textarea
   id: teams
   attributes:
     label: ">>teams<<"
-    description: "Add the teams. One team per line."
+    description: "Add the teams. comma delimited list of teams."
     placeholder: |
-      @octodemo/[TEAM]
-      @octodemo/[TEAM] 
+      TEAM1, TEAM2 
   validations:
     required: true
