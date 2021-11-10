@@ -47,3 +47,19 @@ jobs:
             throw err
           }
 
+    - name: Process Success
+      uses: actions/github-script@v5
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          try { 
+            await github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: ':white_check_mark: Congrats, your request has been processed'
+            }) 
+          } catch(err) {
+            throw err
+          }
+
