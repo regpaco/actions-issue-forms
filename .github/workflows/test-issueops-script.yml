@@ -79,7 +79,7 @@ jobs:
                     core.debug(`Adding team members ${JSON.stringify(params)}`)
 
                     try {
-                        await github.teams.addOrUpdateMembershipForUserInOrg(params)
+                        await github.rest.teams.addOrUpdateMembershipForUserInOrg(params)
                     } catch (e) {
                         const message = `${e} when adding members to the team with ${JSON.stringify(
                             params
