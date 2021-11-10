@@ -1,0 +1,135 @@
+name: Test Action Using in-line script
+
+on:
+  issues:
+    types: [opened, reopened, labeled]    
+jobs:
+  test:
+    name: Test Action
+    if: contains(github.event.issue.labels.*.name, 'issueops-script')
+
+    runs-on: ubuntu-20.04
+    
+    steps:
+    - id: parse
+      name: Run Issue form parser
+      uses: peter-murray/issue-forms-body-parser@v2.0.0
+      with:
+        issue_id: ${{ github.event.issue.number }}
+        separator: '###'
+        label_marker_start: '>>'
+        label_marker_end: '<<' 
+
+    - name: Show parsed data JSON
+      run: |
+        echo "${{ steps.parse.outputs.payload }}"
+
+    - name: Process the Request using Themis
+      id: themis
+      uses: actions/github-script@v5
+      env:
+          payload: '${{ steps.parse.outputs.payload }}'
+      with:
+        github-token: ${{ secrets.PAT_TOKEN }}
+        script: |
+            const {payload} = process.env
+            //console.log(context.payload.issue.body)
+            core.debug(payload)
+            let s = JSON.parse(payload)
+            s.members = s.members.split(",")
+            s.teams = s.teams.split(",")
+            const org = context.payload.organization.login
+            core.debug(`${JSON.stringify(s)}`)
+            for (const teamSlug of s.teams) {
+                core.debug('Finding team')
+                core.debug(`${team_slug}`)
+                core.debug(`${org}`)
+                const params = {
+                  org,
+                  team_slug
+                }
+                let res = {
+                    data: {
+                      name: ''
+                    }
+                }
+                try {
+                    res = await github.rest.teams.getByName(params)
+                } catch (e) {
+                    if (e.status === 404) {
+                        const message404 = `No team found for ${JSON.stringify(params)}`
+                        core.debug(message404)
+                        core.setOutput('status', message404)
+                        core.setFailed(`${message404}`)
+                        throw new Error(message404)
+                    }
+                    const message = `${e} fetching the team with ${JSON.stringify(params)}`
+                    core.debug(message)
+                    core.setOutput('status', message)
+                    core.setFailed(`${message}`)
+                    throw new Error(message)
+                }
+                
+                for (const username of s.members) {
+                    const params = {
+                        org,
+                        team_slug,
+                        username
+                    }
+                    core.debug(`Adding team members ${JSON.stringify(params)}`)
+
+                    try {
+                        await github.teams.addOrUpdateMembershipForUserInOrg(params)
+                    } catch (e) {
+                        const message = `${e} when adding members to the team with ${JSON.stringify(
+                            params
+                        )}`
+                        core.debug(message)
+                        core.setOutput('status', message)
+                        core.setFailed(`${message}`)
+                        throw new Error(message)
+                    }
+                }
+            }
+            core.setOutput(
+                'status',
+                `Successfully created members ${JSON.stringify(
+                    teamInputs.members
+                    )} for teams ${JSON.stringify(teamInputs.teams)}`
+            )
+            
+            
+    - name: Process Failure
+      if: ${{ failure() }}
+      uses: actions/github-script@v5
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          try { 
+            await github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: ':x: Sorry, your request could not be processed\n${{steps.themis.outputs.status}}'
+            }) 
+          } catch(err) {
+            throw err
+          }
+
+    - name: Process Success
+      uses: actions/github-script@v5
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          try { 
+            await github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: ':white_check_mark: Congrats, your request has been processed\n${{steps.themis.outputs.status}}' 
+            }) 
+          } catch(err) {
+            throw err
+          }
+          
+          
