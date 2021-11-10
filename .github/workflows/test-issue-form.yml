@@ -25,8 +25,8 @@ jobs:
         echo "${{ steps.parse.outputs.payload }}"
 
     - name: Process the forms
-      uses: decyjphr-actions/themis
+      uses: decyjphr-actions/themis@HEAD
       with:
-          issue_body_json: '${{ steps.parse.outputs.payload }}'
-          pat_token: ${{secrets.pat_token}}
+        issue_body_json: '${{ steps.parse.outputs.payload }}'
+        pat_token: ${{secrets.pat_token}}
 
