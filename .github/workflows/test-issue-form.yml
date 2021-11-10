@@ -24,7 +24,8 @@ jobs:
       run: |
         echo "${{ steps.parse.outputs.payload }}"
 
-    - name: Process the form
+    - name: Process the Request using Themis
+      id: themis
       uses: decyjphr-actions/themis@HEAD
       with:
         issue_body_json: '${{ steps.parse.outputs.payload }}'
@@ -41,7 +42,7 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: ':x: Sorry, your request could not be processed'
+            body: ':x: Sorry, your request could not be processed\n${{steps.themis.outputs.status}}'
             }) 
           } catch(err) {
             throw err
@@ -57,9 +58,10 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: ':white_check_mark: Congrats, your request has been processed'
+            body: ':white_check_mark: Congrats, your request has been processed\n${{steps.themis.outputs.status}}' 
             }) 
           } catch(err) {
             throw err
           }
-
+          
+          
