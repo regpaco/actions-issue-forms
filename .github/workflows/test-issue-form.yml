@@ -24,16 +24,9 @@ jobs:
       run: |
         echo "${{ steps.parse.outputs.payload }}"
 
-    - name: Create GitHub repo
-      uses: actions/github-script@v5
-      env:
-          payload: '${{ steps.parse.outputs.payload }}'
+    - name: Process the forms
+      uses: decyjphr-actions/themis
       with:
-        script: |
-            const {payload} = process.env
-            //console.log(context.payload.issue.body)
-            console.log(payload)
-            let s = JSON.parse(payload)
-            s.members = s.members.split("\r\n")
-            s.teams = s.teams.split("\r\n")
-            console.log(`${JSON.stringify(s)}`)
+          issue_body_json: '${{ steps.parse.outputs.payload }}'
+          pat_token: ${{secrets.pat_token}}
+
