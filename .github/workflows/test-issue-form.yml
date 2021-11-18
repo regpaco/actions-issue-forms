@@ -30,7 +30,8 @@ jobs:
       with:
         issue_body_json: '${{ steps.parse.outputs.payload }}'
         pat_token: ${{secrets.pat_token}}
-        
+        requestor: ${{github.actor}}
+      
     - name: Process Failure
       if: ${{ failure() }}
       uses: actions/github-script@v5
