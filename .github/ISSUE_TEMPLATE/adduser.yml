@@ -1,4 +1,4 @@
-name: teaminputs
+name: Add Members to Teams
 description: Issue Forms template to invite members to an Org
 title: "Add Members to Teams"
 labels: ["issueops"]
@@ -37,7 +37,9 @@ body:
 - type: dropdown
   id: issue_name
   attributes:
-    label: How did you download the software?
+    label: Select the input type
+    placeholder: "teaminputs"
+    description: "This value is used in the action to create the correct type of input object. Needed till we find a better approach"
     options:
       - teaminputs
   validations:
