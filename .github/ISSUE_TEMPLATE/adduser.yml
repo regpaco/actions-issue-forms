@@ -37,7 +37,7 @@ body:
 - type: dropdown
   id: issue_name
   attributes:
-    label: >>issue_name<<
+    label: ">>issue_name<<"
     description: "This value is used in the action to create the correct type of input object. Needed till we find a better approach"
     options:
       - teaminputs
