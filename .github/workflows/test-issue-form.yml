@@ -23,10 +23,13 @@ jobs:
     - id: issueinput
       name: Parse Issue Input to get the type
       uses: actions/github-script@v5
+      env:
+        payload: ${{ steps.parse.outputs.payload }}
       with:
         script: |
-          console.log(JSON.stringify(steps.parse.outputs.payload,null,2))
-          const input = JSON.parse(steps.parse.outputs.payload)
+          const {payload} = process.env
+          console.log(JSON.stringify(payload,null,2))
+          const input = JSON.parse(payload)
           core.setOutput('issue_name', input.issue_name);
 
     - name: Process the Request using Themis
