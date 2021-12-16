@@ -34,3 +34,11 @@ body:
       TEAM1, TEAM2 
   validations:
     required: true
+- type: dropdown
+  id: issue_name
+  attributes:
+    label: How did you download the software?
+    options:
+      - teaminputs
+  validations:
+    required: true
