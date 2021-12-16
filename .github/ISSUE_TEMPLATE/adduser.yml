@@ -38,7 +38,6 @@ body:
   id: issue_name
   attributes:
     label: Select the input type
-    placeholder: "teaminputs"
     description: "This value is used in the action to create the correct type of input object. Needed till we find a better approach"
     options:
       - teaminputs
