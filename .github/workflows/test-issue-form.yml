@@ -10,13 +10,7 @@ jobs:
 
     runs-on: ubuntu-20.04
     
-    steps:
-    - name: Log the payload
-      uses: actions/github-script@v5
-      with:
-        script: |
-          console.log(JSON.stringify(context.payload.issue,null,2))
-          
+    steps:          
     - id: parse
       name: Run Issue form parser
       uses: peter-murray/issue-forms-body-parser@v2.0.0
@@ -25,10 +19,15 @@ jobs:
         separator: '###'
         label_marker_start: '>>'
         label_marker_end: '<<' 
-            
-    - name: Show parsed data JSON
-      run: |
-        echo "${{ steps.parse.outputs.payload }}"
+           
+    - id: issueinput
+      name: Parse Issue Input to get the type
+      uses: actions/github-script@v5
+      with:
+        script: |
+          console.log(JSON.stringify(steps.parse.outputs.payload,null,2))
+          const input = JSON.parse(steps.parse.outputs.payload)
+          core.setOutput('issue_name', input.issue_name);
 
     - name: Process the Request using Themis
       id: themis
@@ -36,7 +35,7 @@ jobs:
       with:
         issue_body_json: '${{ steps.parse.outputs.payload }}'
         pat_token: ${{secrets.pat_token}}
-        issue_name: ${{ steps.parse.outputs.payload.issue_name }}
+        issue_name: ${{ steps.issueinput.outputs.issue_name }}
       
     - name: Process Failure
       if: ${{ failure() }}
