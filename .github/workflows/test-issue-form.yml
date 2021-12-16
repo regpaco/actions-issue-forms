@@ -36,6 +36,7 @@ jobs:
       with:
         issue_body_json: '${{ steps.parse.outputs.payload }}'
         pat_token: ${{secrets.pat_token}}
+        issue_name: ${{ steps.parse.outputs.payload.issue_name }}
       
     - name: Process Failure
       if: ${{ failure() }}
