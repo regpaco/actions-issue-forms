@@ -12,8 +12,8 @@ body:
   attributes:
     value: |
       You can use this form to add outside collaborators and direct collaborators to repos with specific permission.
-      Before adding Collaboratr to the organization, please refer the
-      [Adding members Guidelines](https://github.com/monalisa/project/issues)
+      Before adding Collaborator to the repos, please refer the
+      [Adding collaboratos Guidelines](https://github.com/monalisa/project/issues)
       to see if your request will meet the requirements.
 - type: dropdown
   id: permission
