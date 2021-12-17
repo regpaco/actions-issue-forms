@@ -1,0 +1,59 @@
+name: Add Collaborators to Repos
+description: Issue Forms template to invite Collaborators to Repos with a specific Permission
+title: "Add Collaborators to Repos"
+labels: ["issueops"]
+assignees:
+  - decyjphr
+body:
+- type: markdown
+  attributes:
+    value: "## Welcome!"
+- type: markdown
+  attributes:
+    value: |
+      You can use this form to add outside collaborators and direct collaborators to repos with specific permission.
+      Before adding Collaboratr to the organization, please refer the
+      [Adding members Guidelines](https://github.com/monalisa/project/issues)
+      to see if your request will meet the requirements.
+- type: dropdown
+  id: permission
+  attributes:
+    label: ">>permission<<"
+    description: "Permission 'admin' | 'read' | 'write' | 'maintain' | 'triage' "
+    options:
+      - admin
+      - read
+      - write
+      - maintain
+      - triage
+  validations:
+    required: true
+- type: textarea
+  id: collaborators
+  attributes:
+    label: ">>collaborators<<"
+    description: |
+      Add the GitHub handle for persons; One per line.
+    placeholder: |
+      Example: 
+      user1
+  validations:
+    required: true
+- type: textarea
+  id: repos
+  attributes:
+    label: ">>repos<<"
+    description: "Add the repos. One per line."
+    placeholder: |
+      repo1 
+  validations:
+    required: true
+- type: dropdown
+  id: issue_name
+  attributes:
+    label: ">>issue_name<<"
+    description: "This value is used in the action to create the correct type of resource. Needed till we find a better approach"
+    options:
+      - collaboratorinputs
+  validations:
+    required: true
